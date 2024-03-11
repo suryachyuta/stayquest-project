@@ -1,0 +1,219 @@
+<% layout("/layouts/boilerplate")%>
+
+<body>
+    <div class="filters">
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-solid fa-fire"></i></div>
+            <p>Trending</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-solid fa-bed"></i></div>
+            <p>Rooms</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-solid fa-mountain-city"></i></div>
+            <p>Iconic Cities</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-solid fa-mountain"></i></div>
+            <p>Mountains</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-brands fa-fort-awesome"></i></div>
+            <p>Castles</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-solid fa-person-swimming"></i></div>
+            <p>Amazing Pools</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-solid fa-campground"></i></div>
+            <p>Camping</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-solid fa-cow"></i></div>
+            <p>Farms</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-regular fa-snowflake"></i></div>
+            <p>Arctic</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-regular fa-snowflake"></i></div>
+            <p>Boats</p>
+        </div>
+        <div class="filter" onclick="toggleFilter(this)">
+            <div><i class="fa-solid fa-landmark-dome"></i></div>
+            <p>Domes</p>
+        </div>
+
+        <div class="tax-toggle">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="container">
+        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 mt-3">
+            <%for(listing of allListings){%>
+                <a href="/listings/<%=listing._id%>" class="listing-link" country="<%=listing.country%>" data-category="<%=listing.category%>">
+                    <div class="card col listing-card">
+                        <img src="<%=listing.image.url%>" class="card-img-top" alt="listing-image" style="height: 16rem;">
+                        <div class="card-img-overlay"></div>
+                        <div class="card-body">
+                          <p class="card-text">
+                            <b><%=listing.title%></b><br>
+                            <!-- <%=listing.description%><br> -->
+                            <span class="pre-tax">
+                                &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+                            </span>
+                            
+                            <span class="post-tax">
+                                &#8377; <%= (listing.price*1.18).toLocaleString("en-IN") %> / night
+                            </span>
+                            <!-- <span class="tax-info">&nbsp;&nbsp;+18% GST</span> -->
+                        </p>
+                        </div>
+                    </div>
+                </a>
+            <%}%>
+        </div>
+    </div>
+    
+
+    <script>
+        let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+        taxSwitch.addEventListener("click",()=>{
+            let postTax = document.getElementsByClassName("post-tax");
+            let preTax = document.getElementsByClassName("pre-tax");
+            for(info of postTax){
+                if(info.style.display!="inline"){
+                    info.style.display = "inline";
+                }else{
+                    info.style.display = "none";
+                }
+            }
+            for(info of preTax){
+                if(info.style.display!="none"){
+                    info.style.display = "none";
+                }else{
+                    info.style.display = "inline";
+                }
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let filters = document.getElementsByClassName("filters")[0];
+
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 0) {
+                filters.classList.add("with-shadow");
+                } else {
+                filters.classList.remove("with-shadow");
+                }
+            });
+        });
+
+        let container = document.getElementsByClassName("container")[0];
+        container.classList.add("container-fluid");
+        container.classList.remove("container");
+
+        let toggleFilter= (filter) => {
+
+            const category = filter.querySelector('p').innerText;
+
+            const filters = document.querySelectorAll('.filter');
+
+            filters.forEach(f => {
+                if (f.innerText.trim() === category) {
+                    // Toggle the 'active' class on the clicked filter
+                    f.classList.toggle('active');
+                } else {
+                    // Remove 'active' class from other filters
+                    f.classList.remove('active');
+                }
+            });
+
+            const listings = document.querySelectorAll('.listing-link');
+
+            // console.log(document.querySelector('.active'));
+
+            if(document.querySelector('.active')){
+                listings.forEach(listing => {
+                    const listingCategory = listing.getAttribute('data-category');
+                    const isVisible = category === listingCategory;
+                    listing.style.display = isVisible ? 'block' : 'none';
+                });
+            }else{
+                listings.forEach(listing => {
+                    listing.style.display = 'block';
+                });
+            }
+            
+        }
+
+        updateInput = (option) => {
+            const inputValue = option.innerText;
+            document.querySelector('.search-inp').value = inputValue;
+        }
+
+        searchCountry = (event) => {
+            const country = document.querySelector(".search-inp").value;
+
+            if(country==""){
+                return ;
+            }
+
+            document.querySelector(".search-inp").value = "";
+
+            const listings = document.querySelectorAll('.listing-link');
+            const filters = document.querySelectorAll(".filter");
+            let category="none";
+            filters.forEach(filter=>{
+                if(filter.classList.contains("active")){
+                    category=filter.innerText.trim();
+                }
+            })
+            for(listing of listings){
+                if(category!="none"){
+                    console.log("IN 1");
+                    listings.forEach(listing => {
+                        const listingCategory = listing.getAttribute('data-category');
+                        const listingCountry = listing.getAttribute('country');
+                        const isVisible = (country==listingCountry) && (category === listingCategory);
+                        listing.style.display = isVisible ? 'block' : 'none';
+                    });
+                }else{
+                    console.log("IN 2");
+                    listings.forEach(listing => {
+                        const listingCountry = listing.getAttribute('country');
+                        const isVisible = country==listingCountry;
+                        listing.style.display = isVisible ? 'block' : 'none';
+                    });
+                }
+            }
+        }
+
+        const dropMenu = document.getElementsByClassName("dropdown-menu")[0];
+        const listings = document.querySelectorAll('.listing-link');
+        const countries = new Set();
+        for(listing of listings){
+            listing.getAttribute('data-category')
+            countries.add(listing.getAttribute('country'));
+        }
+        countries.forEach(country => {
+            const dropdownItem = document.createElement('span');
+            dropdownItem.classList.add('dropdown-item');
+            dropdownItem.textContent = country;
+            dropdownItem.onclick=function() {
+                updateInput(this);
+            };
+            dropMenu.appendChild(dropdownItem);
+        });
+
+    </script>
+
+</body>
