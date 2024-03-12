@@ -70,7 +70,7 @@
             <div class="row">
                 <h4>All Reviews</h4>
                 <%for(review of listing.reviews){%>
-                    <div class="card col-5 ms-4 me-4 mb-3">
+                    <div class="card reviews-card col-5 ms-4 me-4 mb-3">
                         <div class="card-body">
                             <h5 class="card-title mt-2">@<%= review.author.username%></h5>
                             <p class="starability-result card-text" data-rating="<%=review.rating%>"></p>

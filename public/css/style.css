@@ -126,7 +126,9 @@ footer{
 .show-card{
     margin-bottom: 1rem;
 }
-
+.reviews-card{
+    flex:1;
+}
 
 /* Map */
 #map{
@@ -324,6 +326,9 @@ footer{
     .custom-row3{
         max-width:75%;
         margin: 0 auto;
+    }
+    .reviews-card{
+        min-width: 200px;
     }
 }
 
