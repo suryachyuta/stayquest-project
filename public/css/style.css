@@ -24,6 +24,9 @@ body{
 .navbar-brand, .navbar-brand:hover{
     color: #fe424d;
     margin-left: 2rem;
+}
+
+.navbar-brand span{
     margin-right: 6rem;
 }
 
@@ -203,7 +206,7 @@ footer{
 .search-btn{
     color: white;
     background-color: #fe424d;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 0 1rem 0 1rem;
     margin-left: 0.25rem;
 }
@@ -213,15 +216,17 @@ footer{
     border-radius: 20px;
     padding: 0 1rem 0 1rem;
 }
-
+.search-btn span{
+    margin-left:0.5rem; 
+}
 .search-btn i{
-    display: inline;
-    margin-right:0.5rem;    
+    display: inline;   
 }
 
 .search-inp{
     border-radius: 30px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    min-width: 15rem;
 }
 
 .dropdown-menu-center {
@@ -235,6 +240,15 @@ footer{
     overflow-x: hidden;
 }
 
+.user-btn span{
+    color:#444;
+    display: flex;
+    align-items: center;
+    font-size: 35px;
+    margin-right: 2rem;
+    margin-left: 1rem;
+}
+
 @media (max-width: 576px){
     .tax-toggle{
         display:none;
@@ -246,4 +260,36 @@ footer{
         max-width:85%;
         margin: 0 auto;
     }
+    .navbar-brand span{
+        margin-right: 0;
+        display: inline !important;
+    }
+    .navbar-brand{
+        margin-left: 1rem;
+    }
+    .user-btn span{
+        margin-right: 1rem;
+    }
 }
+
+@media (max-width: 992px) {
+    .nav-link{
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 895px) {
+    .search-btn span{
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-link{
+        display: none;
+    }
+    .navbar-brand span{
+        display: none;
+    }
+}
+

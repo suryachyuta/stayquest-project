@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-md bg-body-light sticky-top border-bottom">
+<nav class="navbar navbar-expand-sm bg-body-light sticky-top border-bottom">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-solid fa-location-arrow fa-lg"></i>&nbsp;&nbsp;Wanderlust</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <a class="navbar-brand" href="/listings"><i class="fa-solid fa-location-arrow fa-lg"></i>&nbsp;&nbsp;<span>Wanderlust</span></a>
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <!-- <div class="navbar-nav brand">
           <a class="nav-link" href="/listings"></a>
@@ -14,18 +14,29 @@
               <input class="form-control text-center search-inp dropdown-toggle" type="text" placeholder="Search Destinations" data-bs-toggle="dropdown">
               <div class="dropdown-menu scrollable-menu dropdown-menu-center"></div>
             </div>
-            <button class="btn search-btn" type="button" onclick="searchCountry()"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+            <button class="btn search-btn" type="button" onclick="searchCountry()"><i class="fa-solid fa-magnifying-glass"></i><span>Search</span></button>
           </form>
         </div>
         <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/listings/new">Airbnb your home</a>
-          <% if(!currUser){ %>
-            <a class="nav-link" href="/signup"><b>Sign up</b></a>
-            <a class="nav-link" href="/login"><b>Login</b></a>
-          <% }else{ %>
-            <a class="nav-link" href="/logout"><b>Logout</b></a>
-          <% } %>
+          <a class="nav-link" href="/listings/new"><b>Airbnb your home</b></a>
           </div>
       </div>
+    </div>
+    <div class="dropdown user">
+      <span class="user-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="material-symbols-outlined">
+          account_circle
+        </span>
+      </span>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <% if(!currUser){ %>
+          <li><a class="dropdown-item" href="/signup">Sign up</a></li>
+          <li><a class="dropdown-item" href="/login">Login</a></li>
+        <% }else{ %>
+          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+        <% } %>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="/listings/new">Airbnb your home</a></li>
+      </ul>
     </div>
 </nav>
