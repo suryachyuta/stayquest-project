@@ -249,6 +249,16 @@ footer{
     margin-left: 1rem;
 }
 
+.user-btn span:hover{
+    cursor: pointer;
+}
+
+.dropdown-menu{
+    width:200px;
+    position:absolute;
+    right:36px !important;
+}
+
 @media (max-width: 576px){
     .tax-toggle{
         display:none;
@@ -265,10 +275,17 @@ footer{
         display: inline !important;
     }
     .navbar-brand{
-        margin-left: 1rem;
+        position:absolute;
+        margin-left: 50%;
+        transform: translateX(-50%);
     }
     .user-btn span{
         margin-right: 1rem;
+    }
+    .dropdown-menu{
+        width:200px;
+        position:absolute;
+        right:20px !important;
     }
 }
 
