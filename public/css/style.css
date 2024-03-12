@@ -237,7 +237,7 @@ footer{
 
 @media (max-width: 576){
     .custom-row{
-        width:85%;
+        max-width:85%;
         margin: 0 auto;
     }
 }
