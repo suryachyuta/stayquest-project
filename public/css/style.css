@@ -108,6 +108,11 @@ footer{
     background-color: #fe424d;
     border: none;
 }
+.edit-btn{
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-right: 10px;
+}
 
 /* Show Page */
 .show-img{
@@ -276,8 +281,8 @@ footer{
     }
     .navbar-brand{
         position:absolute;
-        margin-left: 50%;
-        transform: translateX(-50%);
+        margin-left: 50% !important;
+        transform: translateX(-50%) !important;
     }
     .user-btn span{
         margin-right: 1rem;
@@ -293,6 +298,14 @@ footer{
     .nav-link{
         visibility: hidden;
     }
+    .custom-row2{
+        max-width:75%;
+        margin: 0 auto;
+    }
+    .editImg{
+        max-width: 100%;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 895px) {
@@ -307,6 +320,10 @@ footer{
     }
     .navbar-brand span{
         display: none;
+    }
+    .custom-row3{
+        max-width:75%;
+        margin: 0 auto;
     }
 }
 
