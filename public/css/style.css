@@ -126,9 +126,6 @@ footer{
 .show-card{
     margin-bottom: 1rem;
 }
-.reviews-card{
-    flex:1;
-}
 
 /* Map */
 #map{
@@ -307,6 +304,9 @@ footer{
     .editImg{
         max-width: 100%;
         margin: 0 auto;
+    }
+    .reviews-card{
+        flex:1;
     }
 }
 
