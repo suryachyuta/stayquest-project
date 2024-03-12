@@ -138,23 +138,34 @@ footer{
     padding-left: 3rem;
     margin: 0.75rem 0 0.75rem 0;
 }
+.filter-panel{
+    /* width:75%; */
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+}
+
+.filter-panel::-webkit-scrollbar{
+    display: none;
+}
 .filter{
-    margin: 1rem 0 1rem 0;
+    margin: 1rem;
     text-align: center;
     margin-right: 1rem;
     opacity: 0.75;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex: 1;
 }
 .filter:hover {
     opacity: 1;
     cursor: pointer;
 }
-
+.filter div{
+    text-align: center;
+}
 .filter p{
     font-size: 0.8rem;
     margin-bottom: 0;  
+    white-space: nowrap;
 }
 
 .active {
