@@ -14,7 +14,7 @@ module.exports.signUp = async(req, res)=>{
             if(err){
                 next(err);
             }
-            req.flash("success", "Welcome to Wanderlust! You registered successfully");
+            req.flash("success", "Welcome to StayQuest! You registered successfully");
             res.redirect("/listings");
         });
     } catch(e){
@@ -28,7 +28,7 @@ module.exports.renderLoginForm = (req, res)=>{
 };
 
 module.exports.login = async (req,res)=>{
-    req.flash("success", "Welcome back to Wanderlust");
+    req.flash("success", "Welcome back to StayQuest");
     res.redirect(res.locals.redirectUrl);
 };
 
